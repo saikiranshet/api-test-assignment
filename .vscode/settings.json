@@ -1,0 +1,7 @@
+{
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "python.defaultInterpreterPath": ".local/share/virtualenvs/api-test-assignment-_so3h702/python",
+    "python.formatting.provider": "black",
+    "python.analysis.typeCheckingMode": "off"
+}
