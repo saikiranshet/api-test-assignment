@@ -29,7 +29,12 @@ To execute the test suite
 ```bash
 pytest -vs --html=reports/report.html
 ```
+To execute the test using markers
 
+```bash
+pytest -vsm "smoke" --html=reports/report.html
+pytest -vsm "regression" --html=reports/report.html
+```
 
 ## License
 

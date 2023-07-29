@@ -1,9 +1,11 @@
 from ..utils.request_gen import APICaller
 from ..utils.routes import USER_INFO
 from ..utils import DATA
-
+import pytest
 
 class TestUserInfo:
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_fetch_user_info(self, get_api_obj: APICaller):
         """
         This
@@ -16,6 +18,7 @@ class TestUserInfo:
             assert "emails" in contact
             assert "phone_numbers" in contact
 
+    @pytest.mark.regression
     def test_fetch_user_info_by_phone_number(self, get_api_obj: APICaller):
         """
         This
@@ -28,6 +31,8 @@ class TestUserInfo:
             phone_numbers = [contact["value"] for contact in contact["phone_numbers"]]
             assert DATA.PHONE_NUMBER in phone_numbers
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_fetch_user_info_by_email(self, get_api_obj: APICaller):
         """
         This
@@ -40,6 +45,7 @@ class TestUserInfo:
             emails = [contact["value"] for contact in contact["emails"]]
             assert DATA.EMAIL in emails
 
+    @pytest.mark.regression
     def test_fetch_user_info_desc(self, get_api_obj: APICaller):
         """
         This
@@ -49,6 +55,7 @@ class TestUserInfo:
         contacts = data["contacts"]
         assert isinstance(contacts, list)
 
+    @pytest.mark.regression
     def test_fetch_user_info_asc(self, get_api_obj: APICaller):
         """
         This
@@ -58,6 +65,8 @@ class TestUserInfo:
         contacts = data["contacts"]
         assert isinstance(contacts, list)
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_fetch_user_info_created_at(self, get_api_obj: APICaller):
         """
         This
@@ -67,6 +76,7 @@ class TestUserInfo:
         contacts = data["contacts"]
         assert isinstance(contacts, list)
 
+    @pytest.mark.regression
     def test_fetch_user_info_updated_at(self, get_api_obj: APICaller):
         """
         This
@@ -76,6 +86,9 @@ class TestUserInfo:
         contacts = data["contacts"]
         assert isinstance(contacts, list)
 
+
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_fetch_user_info_all_parms(self, get_api_obj: APICaller):
         """
         This
@@ -88,6 +101,9 @@ class TestUserInfo:
             phone_numbers = [contact["value"] for contact in contact["phone_numbers"]]
             assert DATA.PHONE_NUMBER in phone_numbers
 
+
+    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_fetch_user_info_with_wrong_phone_number(self, get_api_obj: APICaller):
         """
         This is a negative testcase when we provide a number which is wrong
@@ -98,6 +114,7 @@ class TestUserInfo:
         assert isinstance(contacts, list)
         assert len(contacts) == 0, "The 'contacts' list should be empty."
 
+    @pytest.mark.regression
     def test_fetch_user_info_with_0_phone_number(self, get_api_obj: APICaller):
         """
         This is a negative testcase when we provide a number which is 0
@@ -108,6 +125,7 @@ class TestUserInfo:
         assert isinstance(contacts, list)
         assert len(contacts) == 0, "The 'contacts' list should be empty."
 
+    @pytest.mark.regression
     def test_fetch_user_info_with_negative_phone_number(self, get_api_obj: APICaller):
         """
         This is a negative testcase when we provide a number which is -ve
@@ -117,6 +135,7 @@ class TestUserInfo:
         status_value = data["errors"][0]["status"]
         assert status_value == 400
 
+    @pytest.mark.regression
     def test_fetch_user_info_with_aphanumeric_phone_number(
         self, get_api_obj: APICaller
     ):
