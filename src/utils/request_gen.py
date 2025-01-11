@@ -8,12 +8,12 @@ class APICaller:
 
     def get(
         self,
-        url_offest,
+        url_offset,
         err_key: str = "message",
         error: str = "Failed to make GET request",
         skip_err=False,
     ):
-        url = f"{self.base_url}{url_offest}"
+        url = f"{self.base_url}{url_offset}"
         response = requests.get(url, headers=self.headers, timeout=30)
         res = None
         if "application/json" in response.headers.get("Content-Type", ""):
